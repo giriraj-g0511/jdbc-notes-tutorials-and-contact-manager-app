@@ -49,7 +49,7 @@ This console-based app is structured using the **MVC (Model-View-Controller)** a
 
 Feel free to raise any issues or ask questions through GitHub Issues or the repository’s contact section.
 
-🔗 [GitHub Repo Link]
+🔗 [[GitHub Repo Link](https://github.com/giriraj-g0511/jdbc-notes-tutorials-and-contact-manager-app)]
 
 ## 📝 License
 
