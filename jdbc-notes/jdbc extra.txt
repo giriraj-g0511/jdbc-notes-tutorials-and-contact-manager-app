@@ -1,0 +1,18 @@
+jdbc is the only api for which we dont need to provide any dependency because jdbc all required code or data are present in jdk so we no need to add externl dependency
+we only add the database dependency to cofigure the database and java application
+so, jdbc has interface, it does not have any class in jdk
+--we add dependency into pom.xml file, the pom stands for 'project object model' and xml stands for'extensible markup language'
+
+for name takes fully qualified class name for database driver, for postgresql 'org.postgresql' is package and 'driver' is class
+
+in first step we took driver class and loaded into jvm/java application
+
+loclhost is address of database server, if we want to use another system then we have to provide ip address of another system and both system has same wifi connection
+
+collable statement : in these already query is defined in database and whenever we use that query we use collable statement and we pass the data only
+
+what is store procedure?
+writing a sql query and storing it in database it is called as store procedure.
+
+what is collable statement?
+it is type statement in which we called the sql query from database to perform operation, these sql queries already written and stored database and whenever we needed then we call it dont nees to write query again

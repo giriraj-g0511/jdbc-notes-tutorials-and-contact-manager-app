@@ -1,0 +1,126 @@
+JDBC::
+	JDBC stand for Java DataBase Connectivity, it is an API which is used to connect java application with database server.it is given by sun microsystem.API is nothing but a software which is used to communicate between 2 or more applications
+
+**Step 1:-Load and register driver
+	- we have to load the class file of driver software into jvm for that we use static method for that which is present in class anmed as CLASS and method name is forName() 
+	- it is present in java.lang package and it will take fully qualified driver class name as argument in string format
+	- when ever we provide wrong data it will throw class not found exception which we have to resolve
+	- for PostgreSQL = org.postgresql.Driver
+	  for Oracle = oracle.jdbc.OracleDriver
+	  for MySQL = com.mysql.jdbc.Driver
+
+**Step 2:-Create Connection 
+	- to connect jdbc application with database we have to esatblish connection between them
+	- it is interface present in java.sql package
+	- to create implementing object of Connection interface we have getConnection() method which will accept url,username and password in string formate
+	- getConnection() method is static method and present in DriverManager class,Firstly import DriverManager Class frm java.sql package along with Connection.
+	- if we enter wrong data it will throw sql exception and we have to resolve it 
+	- getConnection accept arument in 2 formate 
+		1)getConnection("jdbc://postgresql:localhost/PortNumber/DatabaseName&username=UserName&password=Password")
+		2)getConnection("jdbc://postgres:localhost/PortNumber/DatabaseName","UserName","Password")
+
+**Step 3:-Create Statement
+	- it is inteface present in java.sql package
+	- it is used to write sql query
+	- we can create its object in 3 ways
+		1)statement
+		2)preparedStatement
+		3)collableStatement
+	- all these 3 are interfaces
+	- for creating implementing object of Statement interface we have non static method createStatement() which is present in connection object and its the the first way.
+
+**Step 4:-Execute Query
+	- simply we have to write a query operation which we have to perform on our database.
+	- there are 3 methods for executing query and all these are present in Statement interface object an so these are non static methods.
+		1)execute()
+			it is generic method means it will execute all queries like DML,TCL,DDL,etc.
+			it will return true only for DQL quries and for rest of all it will return false.
+			@ public boolean execute("SQLQuery")
+		2)executeUpdate()
+			it will execute only DML queries and it will return number of rows affected by queries.
+			@ public int executeUpdate("DML")
+		3)executeQuery()
+			it will execute only DQL queries and it will return resultSet
+			@ public ResultSet executeQuery("DQLQuery")
+
+**Step 5:-Close Connection
+	- at 2nd step we are establishing connection between our applicaton and database , after executing all operations we must have to close our connetion to avoid unwanted operation on databse,for that we have to close connection
+	- and also whenever we are creating connection it will uses the resources of system and if dont close it then it will remain in same state and that will make application slow ,so to increase application performance we have to close the connection
+	- we can close connection using close() method which is present in Connection interface object.
+
+	
+	$$ ResultSet:-
+		- it is an inteface presnt in java.sql package which is used to fetch data from database or display the data
+		- it acts like cursor and it will point towards the table in database.
+		- we can create result set ibject by 
+		- it contains  methods ways
+			1)getResultSet()
+				it is present in Statement interface object and it will return result set object.
+				it does not accept in any argument and when we are creating object using getResultSet() method we have to use either execute() or executeQuery() method.
+			2)executeQuery()
+				it is present in Statement interface object and it will return result set object.
+				it will accept DQL query as an argument and it will return result set object.
+		- it contains 2 methods 
+			1)next()
+				- it is present in ResultSet interface object.
+				- it is boolean type method or we can say that it will retuen boolean type value.
+				- it is used to check next row is present or not, if next row is present it will return true or else it will return false. 
+			2)getX()
+				- it is present in ResultSet interface object.
+				- it is used to fetch data from particular cell of table.
+				- in getX() X is used to mention the data type of column.
+				- getX() will accept the column name or column index of table(the index start from 1).
+	
+
+	$$ PreparedStatement:
+		- it is an interface present in java.sql package 
+		- it is child of Statement interface 
+		- to create implementation object of PreparedStatement we have prepareStatement() method which accept the sql query in string formate .
+		- it has 6 methods, 3 are inherited from parent interface Statement and other 3 are extra methods which are nothing but same method as Statement interface but without arguments
+			execute(),executeUpdate and executeQuery() these 3 extra methods which does not accept any parameter.
+		- PreparedStatement is used to perform dynamic query operation data which accept the values from user at run time.
+		- for accepting values from user at run time we have to use setX method with the help of placeholder or delemeter .
+			1) Placeholder / Delemeter:
+				- it is used to assign the value to the sql query during runtime.
+				- it holds the data given by setX() method.
+				- '?' is used as delemeter or placeholder.
+			2)SetX():
+				- it is non static method present in PreparedStatement interface object.
+				- it is used to assign the the value to the position of delemeter or placeholder
+				- in setX() method X is used to mention the datatype of column or value to be inserted.
+				- it will accept 2 argument first one is position of placeholder or delemeter which is begin from left to right with 1 and second argument is value.
+				@ setDATATYPE(Position of Delemeter,value)
+
+
+	$$ Batch Execution:
+		- batch is nothing but a group of multiple queries.
+		- it is used to execute multiple queries at a same time.
+		- to add multiple queries in a batch we have addBatch() method which present in Statement interface object and it accepts the SQL query in string formate.
+		- and to execute the batch we have executeBatch() method which is present in Statement interface object.
+
+JDBC MVC::
+		it is an architecture used to build applications
+	Model (Database):
+		- it is data used in software applications.
+		- the data related to database like table and column or getter,setter methods
+
+	View (Frontend):
+		- all frontend part written in view part
+		- frontend or choice options provided in view part.
+	
+	Controller (Backend):
+		- it contains business logic like creation of connection and performing CRUD operations
+
+
+
+	## Content of JDBC
+		a)Interfaces
+			1)Connection
+			2)Statement
+			3)PreparedStatement
+			4)CollableStatement
+
+		b)Helper Class
+			DriverManager:it is contains getConnection() method which is used to create object of Connection interface
+		c)Implementing Class
+			the class name which we are passing as string argument in forName() method
